@@ -1,6 +1,6 @@
 # Superstore Real-Time Data Pipeline: Kafka to Cloud Analytics
 
-![Architecture Diagram]('Dashboard/architecture.png')
+![Architecture Diagram](Dashboard/architecture.png)
 
 Welcome to my **Superstore Real-Time Data Pipeline Project**! This repository showcases my advanced data engineering skills, building an end-to-end pipeline that ingests real-time sales data from Kafka, processes it locally in Python, stores it in PostgreSQL, and migrates it to AWS Redshift for analytics—visualized through an interactive Power BI dashboard. The project highlights my expertise in real-time data processing, cloud migration, ETL optimization, and data visualization, completed efficiently with best practices in mind.
 
