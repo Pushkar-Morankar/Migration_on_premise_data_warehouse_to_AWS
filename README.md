@@ -79,7 +79,7 @@ The ETL pipeline, built with PySpark on Amazon EMR, ensures efficient data trans
 - **Transform**: Converts data into a star schema, linking `sales_facts` to dimensions using natural keys (`order_date`, `customer_id`, `product_id`). Redshift auto-generates `IDENTITY` keys.
 - **Load**: Writes to Redshift using the `spark-redshift` connector, storing only the latest records.
 
-**Code**: See [`etl.py`](etl.py) for the full implementation.
+**Code**: See [`etl.py`](Scripts/etl.py) for the full implementation.
 
 ---
 
