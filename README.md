@@ -1,6 +1,6 @@
 # Superstore Real-Time Data Pipeline: Kafka to Cloud Analytics
 
-![Architecture Diagram](Dashboard\architecture.png)
+![Architecture Diagram]('Dashboard\architecture.png')
 
 Welcome to my **Superstore Real-Time Data Pipeline Project**! This repository showcases my advanced data engineering skills, building an end-to-end pipeline that ingests real-time sales data from Kafka, processes it locally in Python, stores it in PostgreSQL, and migrates it to AWS Redshift for analytics—visualized through an interactive Power BI dashboard. The project highlights my expertise in real-time data processing, cloud migration, ETL optimization, and data visualization, completed efficiently with best practices in mind.
 
@@ -40,7 +40,7 @@ The data pipeline follows a robust, scalable architecture:
 6. **Target**: AWS Redshift (star schema for analytics).
 7. **Visualization**: Power BI connected via ODBC to Redshift.
 
-![Architecture Diagram](Dashboard\architecture.png)
+![Architecture Diagram]('Dashboard\architecture.png')
 
 ---
 
@@ -48,7 +48,7 @@ The data pipeline follows a robust, scalable architecture:
 
 The on-premises PostgreSQL schema stores initial data:
 
-![PostgreSQL Schema](Schemas\postgresql_relation.png)
+![PostgreSQL Schema]('Schemas\postgresql_relation.png')
 
 - **Structure**: Normalized tables (`orders`, `customers`, `products`) linked by foreign keys.
 - **Daily Export**: Uses `COPY` queries to extract today’s data into CSVs.
@@ -59,7 +59,7 @@ The on-premises PostgreSQL schema stores initial data:
 
 Data is transformed into an optimized star schema in Redshift for analytics:
 
-![Redshift Schema](Schemas\redshift_relation.png)
+![Redshift Schema]('Schemas\redshift_relation.png')
 
 - **Dimension Tables**:
   - `time_dim`: `time_key (IDENTITY)`, `order_date`, `year`, `quarter`, `month`, `day`.
@@ -87,7 +87,7 @@ The ETL pipeline, built with PySpark on Amazon EMR, ensures efficient data trans
 
 The final output is an interactive Power BI dashboard, delivering real-time insights:
 
-![Power BI Dashboard](Dashboard\Dashboard.png)
+![Power BI Dashboard]('Dashboard\Dashboard.png')
 
 - **Visuals**:
   - **Total Sales & City Count**: Key metrics showing $18.09M in total sales and 252 cities.
