@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Daily Business Dashboard</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body class="bg-gray-100">
+    <div class="container mx-auto p-6">
+        <h1 class="text-3xl font-bold text-center mb-6">Daily Business Overview</h1>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="bg-white p-4 rounded-lg shadow-md">
+                <h2 class="text-xl font-semibold mb-4">Key Metrics</h2>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="bg-green-100 p-3 rounded">
+                        <p class="text-sm text-gray-600">Total Sales</p>
+                        <p id="total-sales" class="text-2xl font-bold text-green-600">${{ total_sales }}</p>
+                    </div>
+                    <div class="bg-blue-100 p-3 rounded">
+                        <p class="text-sm text-gray-600">Total Orders</p>
+                        <p id="total-orders" class="text-2xl font-bold text-blue-600">{{ total_orders }}</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white p-4 rounded-lg shadow-md">
+                <h2 class="text-xl font-semibold mb-4">Time of Last Update</h2>
+                <p id="last-updated" class="text-gray-600"></p>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+            <div class="bg-white p-4 rounded-lg shadow-md">
+                <div id="top-products-chart"></div>
+            </div>
+            <div class="bg-white p-4 rounded-lg shadow-md">
+                <div id="category-sales-chart"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Plotly Charts
+        Plotly.newPlot('top-products-chart', JSON.parse('{{ top_products_graph | safe }}'));
+        Plotly.newPlot('category-sales-chart', JSON.parse('{{ category_sales_graph | safe }}'));
+
+        // Auto Refresh Function
+        function refreshData() {
+            $.getJSON('/refresh_data', function(data) {
+                $('#total-sales').text('$' + data.total_sales.toFixed(2));
+                $('#total-orders').text(data.total_orders);
+                $('#last-updated').text('Last Updated: ' + new Date().toLocaleString());
+            });
+        }
+
+        // Refresh every 5 minutes
+        setInterval(refreshData, 5 * 60 * 1000);
+
+        // Initial update of last updated time
+        $('#last-updated').text('Last Updated: ' + new Date().toLocaleString());
+    </script>
+</body>
+</html>
