@@ -40,7 +40,7 @@ The data pipeline follows a robust, scalable architecture:
 6. **Target**: AWS Redshift (star schema for analytics).
 7. **Visualization**: Power BI connected via ODBC to Redshift.
 
-![Architecture Diagram]('Dashboard/architecture.png')
+![Architecture Diagram](Dashboard/architecture.png)
 
 ---
 
@@ -48,7 +48,7 @@ The data pipeline follows a robust, scalable architecture:
 
 The on-premises PostgreSQL schema stores initial data:
 
-![PostgreSQL Schema]('Schemas/postgresql_relation.png')
+![PostgreSQL Schema](Schemas/postgresql_relation.png)
 
 - **Structure**: Normalized tables (`orders`, `customers`, `products`) linked by foreign keys.
 - **Daily Export**: Uses `COPY` queries to extract today’s data into CSVs.
@@ -59,7 +59,7 @@ The on-premises PostgreSQL schema stores initial data:
 
 Data is transformed into an optimized star schema in Redshift for analytics:
 
-![Redshift Schema]('Schemas/redshift_relation.png')
+![Redshift Schema](Schemas/redshift_relation.png)
 
 - **Dimension Tables**:
   - `time_dim`: `time_key (IDENTITY)`, `order_date`, `year`, `quarter`, `month`, `day`.
@@ -87,7 +87,7 @@ The ETL pipeline, built with PySpark on Amazon EMR, ensures efficient data trans
 
 The final output is an interactive Power BI dashboard, delivering real-time insights:
 
-![Power BI Dashboard]('Dashboard/Dashboard.png')
+![Power BI Dashboard](Dashboard/Dashboard.png)
 
 - **Visuals**:
   - **Total Sales & City Count**: Key metrics showing $18.09M in total sales and 252 cities.
@@ -136,29 +136,29 @@ This project was executed efficiently and methodically:
 
 The project is organized efficiently for maintainability:
 
-superstore-real-time-pipeline/
-├── Data/
-│   ├── original_superstore_data.csv
-│   ├── orders.csv
-│   ├── orders.csv
-│   ├── customers.csv
-│   └── products.csv
-├── Scripts/
-│   ├── etl.py
-│   ├── kafka_to_postgres.py
-│   ├── configs.py
-│   └── kafka_python_postgres.sql
-├── Dashboard/
-│   ├── architecture_diagram.png
-│   ├── postgres_schema.png
-│   └── redshift_schema.png
-├── Schemas/
-│   ├── postgresSQL_table_creation.sql
-│   ├── redshift_data_modelling.sql
-│   ├── postgres_schema.png
-│   └── redshift_schema.png
-├── .gitignore
-└── README.md
+superstore-real-time-pipeline/ <br>
+├── Data/  <br>
+│   ├── original_superstore_data.csv <br>
+│   ├── orders.csv <br>
+│   ├── orders.csv <br>
+│   ├── customers.csv <br>
+│   └── products.csv <br>
+├── Scripts/ <br>
+│   ├── etl.py <br>
+│   ├── kafka_to_postgres.py <br>
+│   ├── configs.py <br>
+│   └── kafka_python_postgres.sql <br>
+├── Dashboard/ <br>
+│   ├── architecture_diagram.png  <br>
+│   ├── postgres_schema.png <br>
+│   └── redshift_schema.png <br>
+├── Schemas/ <br>
+│   ├── postgresSQL_table_creation.sql <br>
+│   ├── redshift_data_modelling.sql <br>
+│   ├── postgres_schema.png <br>
+│   └── redshift_schema.png <br>
+├── .gitignore <br>
+└── README.md <br>
 
 
 - **`Data`**: Contains daily CSV exports (`orders.csv`, `customers.csv`, `products.csv` and).
