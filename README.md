@@ -14,6 +14,7 @@ This project modernizes a Superstore data workflow by integrating real-time data
 - **Daily Updates**: Exports today’s sales data to CSV files, transferred to AWS S3, and processed via EMR.
 - **ETL Pipeline**: Transforms data into a Redshift star schema using PySpark on EMR for optimized analytics.
 - **Visualization**: Builds an interactive Power BI dashboard for real-time insights into sales trends and distributions.
+- **Visualization for Today's Data**: Builds an interactive Flask dashboard for real-time insights into sales data of today's sold items.
 
 ---
 
@@ -103,6 +104,24 @@ The final output is an interactive Power BI dashboard, delivering real-time insi
 
 ---
 
+# Daily Business Insights
+
+The final output is an interactive daily business overview, delivering real-time insights for March 4, 2025:
+
+![Daily insight Dashboard](Frontend/daily_update.png)
+
+- **Visuals**:
+  - **Key Metrics**: Core metrics displaying $384.1 in total sales and 2 orders.
+  - **Top 5 Products by Sales Today**: Bar chart highlighting the leading products in sales, including Howard Miller Distant Time Traveler Alarm Clock and Panasonic KX-310 Heavy-Duty Electric Pencil Sharpener.
+  - **Sales Distribution by Category Today**: Pie chart showing Furniture (71.4%) and Office Supplies (28.6%) categories.
+  - **Time of Last Update**: Timestamp indicating the data was last updated on 3/4/2025 at 9:57:01 PM.
+- **Features**: The overview provides a snapshot of daily performance, allowing quick assessment of sales and product performance.
+- **Observations**:
+  - The daily business insights effectively communicate current sales performance, product popularity, and category distribution, showcasing a clear and concise visualization of business activity.
+  - The timestamp ensures users are aware of the data's freshness, supporting timely decision-making.
+
+---
+
 ## Project Steps
 
 This project was executed efficiently and methodically:
@@ -110,6 +129,7 @@ This project was executed efficiently and methodically:
 1. **Setup Environment**: Configured Kafka, PostgreSQL, Python, AWS CLI, EMR, Redshift, and Power BI.
 2. **Kafka Ingestion**: Built Python scripts to consume and process Kafka data into PostgreSQL.
 3. **PostgreSQL Storage**: Stored data in PostgreSQL tables, optimized for daily exports.
+3. **Daily Live info update**: Shows the information about daily shipped goods.
 4. **Daily Data Export**: Automated SQL `COPY` commands to export today’s data to CSVs.
 5. **S3 Transfer**: Used AWS CLI to upload CSVs to `s3://superstore-migration-007/raw/`.
 6. **EMR Setup**: Launched an EMR cluster with PySpark for ETL.
@@ -137,21 +157,24 @@ This project was executed efficiently and methodically:
 The project is organized efficiently for maintainability:
 
 superstore-real-time-pipeline/ <br>
+├── Dashboard/ <br>
+│   ├── architecture_diagram.png  <br>
+│   ├── postgres_schema.png <br>
+│   └── redshift_schema.png <br>
 ├── Data/  <br>
 │   ├── original_superstore_data.csv <br>
 │   ├── orders.csv <br>
-│   ├── orders.csv <br>
 │   ├── customers.csv <br>
 │   └── products.csv <br>
+├── Frontend/  <br>
+│   ├── templates <br>
+|   │   └── dashboard.html <br>
+│   └── app.py <br>
 ├── Scripts/ <br>
 │   ├── etl.py <br>
 │   ├── kafka_to_postgres.py <br>
 │   ├── configs.py <br>
 │   └── kafka_python_postgres.sql <br>
-├── Dashboard/ <br>
-│   ├── architecture_diagram.png  <br>
-│   ├── postgres_schema.png <br>
-│   └── redshift_schema.png <br>
 ├── Schemas/ <br>
 │   ├── postgresSQL_table_creation.sql <br>
 │   ├── redshift_data_modelling.sql <br>
@@ -162,10 +185,11 @@ superstore-real-time-pipeline/ <br>
 
 
 - **`Data`**: Contains daily CSV exports (`orders.csv`, `customers.csv`, `products.csv` and).
+- **`Dashboard`**: Stores visuals dashboards, and architecture diagrams.
+- **`Frontend`**: Stores frontend flask code, and html template.
 - **`Scripts`**: Holds Python scripts (`etl.py`, `kafka_to_postgres.py`, `configs.py`) and SQL files (`postgresSQL_table_creation.sql`, `redshift_data_modelling.sql`).
 - **`Scripts`**: Holds Python scripts (`etl.py`, `kafka_to_postgres.py`, `configs.py`) and SQL files (`postgresSQL_table_creation.sql`, `redshift_data_modelling.sql`).
 - **`Schemas`**: SQL files (`postgresSQL_table_creation.sql`, `redshift_data_modelling.sql`) and the image of their relations .
-- **`Dashboard`**: Stores visuals dashboards, and architecture diagrams.
 - **Observations**: This structure reflects a disciplined approach, ensuring data, code, and documentation are easily accessible and maintainable.
 
 ---
@@ -175,12 +199,13 @@ superstore-real-time-pipeline/ <br>
 To replicate this project:
 
 1. **Prerequisites**:
-   - Kafka setup, PostgreSQL, DBeaver(for querying postgresql and redshift), Python (with Kafka libraries), AWS account (S3, EMR, Redshift, SNS), Power BI Desktop with Redshift ODBC driver.
+   - Kafka setup, PostgreSQL, DBeaver(for querying postgresql and redshift), Python (with kafka,sqlalchemy,flask libraries), AWS account (S3, EMR, Redshift, SNS), Power BI Desktop with Redshift ODBC driver.
 
 2. **Steps**:
    - Clone this repo: `git clone <repo-url>`.
    - Configure Kafka consumer and Python scripts in `kafka_to_postgres.py`.
    - Set up PostgreSQL tables with `postgresSQL_table_creation.sql`.
+   - Set up Flask Frontend Daily Insigts Dashboard with `Frontend Folder`
    - Schedule daily exports using PostgreSQL `COPY` queries.
    - Transfer CSVs to S3: `aws s3 cp Data/*.csv s3://superstore-migration-007/raw/`.
    - Launch EMR, run ETL with `spark-submit etl.py`.
@@ -207,8 +232,8 @@ To replicate this project:
 ## Contact
 
 For questions or collaboration, please reach out:
-- **LinkedIn**: [Your LinkedIn URL]
-- **Email**: [Your Email]
+- **LinkedIn**: [LinkedIn](https://www.linkedin.com/in/pushkarmorankar/)
+- **Email**: (thepushkarmorankar@gmail.com)
 
 This project showcases my ability to build efficient, real-time data pipelines and deliver impactful cloud-based analytics—explore the code, images, and dashboard to see my work in action!
 
